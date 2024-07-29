@@ -9,7 +9,7 @@ import {
   useDeleteTodoMutate,
 } from "../hooks/useQueryHooks";
 
-export const TaskItem = ({ item, id }: { item: Todo; id: number }) => {
+export const TaskItem = ({ item }: { item: Todo}) => {
   const { mutate: checkMutate } = useCheckTodoMutate();
   const { mutate: updateMutate } = useUpdateTodoMutate();
   const { mutate: deleteMutate } = useDeleteTodoMutate();
