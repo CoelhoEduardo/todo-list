@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   ChakraProvider,
   Box,
@@ -8,8 +7,7 @@ import {
   Spinner,
   HStack,
 } from "@chakra-ui/react";
-import { useTodoData } from "./hooks/useTodosData";
-import { useRef } from "react";
+import { useTodoData } from "./hooks/useQueryHooks";
 import {
   ColorModeSwitcher,
   Header,
@@ -17,12 +15,11 @@ import {
   FilterTask,
   ListTask,
 } from "./components";
+import { useState } from "react";
 
 export const App = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const { data, isLoading, isError } = useTodoData();
-  const [filter, setFilter] = React.useState("");
+  const [filter, setFilter] = useState("");
   const todoId = data?.map((todo) => todo.id) as unknown as number;
 
   const completedCount = data?.filter((todo) => todo.completed).length;
@@ -42,7 +39,7 @@ export const App = () => {
               allTodosCount={allTodosCount}
             />
             <HStack gap={12}>
-              <CreateTask id={todoId} inputRef={inputRef} />
+              <CreateTask id={todoId} />
               <FilterTask onChange={(e) => setFilter(e.target.value)} />
             </HStack>
             {isLoading && <Spinner />}

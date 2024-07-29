@@ -12,7 +12,7 @@ export const Header = ({
     <Box display="flex" alignItems="center" p={2} gap={16}>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Heading as="h1" size="3xl" fontWeight="bold">
-          Task's Todo
+          Todo List
         </Heading>
         <Text fontSize="medium" textAlign="center">
           Let's do it, don't stop, keep working hard!

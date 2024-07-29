@@ -1,22 +1,17 @@
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Button,
   FormControl,
   Input,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useTodoMutate } from "../hooks/useTodosData";
+import { useTodoMutate } from "../hooks/useQueryHooks";
 
-export const CreateTask = ({
-  id,
-  inputRef,
-}: {
-  id: number;
-  inputRef: React.RefObject<HTMLInputElement>;
-}) => {
+export const CreateTask = ({ id }: { id: number }) => {
   const [title, setTitle] = useState("");
   const { mutate } = useTodoMutate();
   const color = useColorModeValue("dark", "light");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +34,7 @@ export const CreateTask = ({
       setTitle("");
       inputRef.current?.focus();
     },
-    [title, id]
+    [title, id, mutate, inputRef]
   );
 
   return (

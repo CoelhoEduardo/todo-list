@@ -7,7 +7,7 @@ import {
   useCheckTodoMutate,
   useUpdateTodoMutate,
   useDeleteTodoMutate,
-} from "../hooks/useTodosData";
+} from "../hooks/useQueryHooks";
 
 export const TaskItem = ({ item, id }: { item: Todo; id: number }) => {
   const { mutate: checkMutate } = useCheckTodoMutate();
@@ -35,7 +35,7 @@ export const TaskItem = ({ item, id }: { item: Todo; id: number }) => {
     updateMutate({ id: item.id, title: newTitle });
 
     item.title = newTitle;
-  }, [item.id, newTitle, updateMutate]);
+  }, [item, newTitle, updateMutate]);
 
   const handleDelete = useCallback(
     (id: number) => {
